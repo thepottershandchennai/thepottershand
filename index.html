@@ -1,215 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>The Potter's Hand</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8" />
+<title>The Potter's Hand</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Elegant thin fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --theme: #772f0c;
-      --theme-light: #b66a3c;
-      --bg-gradient: linear-gradient(135deg, #f7efe9, #efe2d7);
-      --card-bg: rgba(255,255,255,0.92);
-    }
+<style>
+:root {
+  --theme: #772f0c;
+  --theme-light: #b66a3c;
+  --bg-gradient: linear-gradient(135deg, #f7efe9, #efe2d7);
+  --card-bg: rgba(255,255,255,0.92);
+}
 
-    * { box-sizing: border-box; }
+* { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-gradient);
-      color: #2a2a2a;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-    /* HEADER */
-    header {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 24px 28px;
-      background: linear-gradient(90deg, #ffffff, #f4ece6);
-      border-bottom: 1px solid #e5d6cb;
-    }
+/* ================= HEADER ================= */
+header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: linear-gradient(90deg, #fff, #f4ece6);
+  border-bottom: 1px solid #e5d6cb;
+}
 
-    /* 🔼 LOGO MADE BIGGER HERE */
-    header img {
-      height: 70px;              /* increased from 54px */
-      max-height: 72px;
-      border-radius: 8px;
-      background: #f0e6df;       /* fallback */
-    }
+header img {
+  height: 70px;
+  border-radius: 8px;
+}
 
-    header h1 {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      margin: 0;
-      font-family: 'Cinzel', serif;
-      font-weight: 400;
-      font-size: 32px;
-      letter-spacing: 2.5px;
-      color: var(--theme);
-      white-space: nowrap;
-      pointer-events: none;
-    }
+header h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cinzel', serif;
+  font-weight: 400;
+  font-size: 30px;
+  letter-spacing: 2px;
+  color: var(--theme);
+  white-space: nowrap;
+  pointer-events: none;
+}
 
-    .filters {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+.filters {
+  display: flex;
+  gap: 8px;
+}
 
-    select, button {
-      padding: 7px 12px;
-      font-size: 14px;
-      border-radius: 6px;
-      border: 1px solid #c9b4a6;
-      background: #fff;
-    }
+select, button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #c9b4a6;
+  background: #fff;
+}
 
-    button {
-      background: var(--theme);
-      color: #fff;
-      cursor: pointer;
-      border: none;
-      transition: all 0.25s ease;
-    }
+button {
+  background: var(--theme);
+  color: #fff;
+  border: none;
+}
 
-    button.secondary {
-      background: #e6d5c8;
-      color: var(--theme);
-    }
+button.secondary {
+  background: #e6d5c8;
+  color: var(--theme);
+}
 
-    button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
+/* ================= BODY ================= */
+main {
+  flex: 1;
+  padding: 48px 20px;
+}
 
-    /* BODY */
-    main {
-      padding: 56px 24px;
-      flex: 1;
-    }
+.magazine-list {
+  max-width: 700px;
+  margin: auto;
+  display: grid;
+  gap: 16px;
+}
 
-    .magazine-list {
-      max-width: 700px;
-      margin: auto;
-      display: grid;
-      gap: 16px;
-    }
+.magazine-list a {
+  padding: 20px;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-decoration: none;
+  color: var(--theme);
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+}
 
-    .magazine-list a {
-      padding: 20px;
-      text-align: center;
-      text-decoration: none;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      background: var(--card-bg);
-      border-radius: 12px;
-      color: var(--theme);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-      transition: all 0.3s ease;
-    }
+/* ================= FOOTER ================= */
+footer {
+  background: linear-gradient(90deg, #f4ece6, #fff);
+  border-top: 1px solid #e5d6cb;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
-    .magazine-list a:hover {
-      background: linear-gradient(135deg, var(--theme), var(--theme-light));
-      color: #fff;
-      transform: translateY(-3px);
-    }
+footer .right {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
 
-    /* FOOTER */
-    footer {
-      background: linear-gradient(90deg, #f4ece6, #ffffff);
-      border-top: 1px solid #e5d6cb;
-      padding: 20px 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+/* ================= MODALS ================= */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
 
-    footer .left {
-      font-size: 14px;
-      opacity: 0.85;
-    }
+.modal-content {
+  background: #fff;
+  padding: 24px;
+  width: 90%;
+  max-width: 360px;
+  border-radius: 16px;
+}
 
-    footer .right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
 
-    footer a {
-      font-size: 20px;
-      text-decoration: none;
-      color: var(--theme);
-    }
+  header {
+    flex-direction: column;
+    gap: 14px;
+    padding-bottom: 24px;
+  }
 
-    /* MODALS */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      justify-content: center;
-      align-items: center;
-      z-index: 10;
-    }
+  header img {
+    height: 60px;
+  }
 
-    .modal-content {
-      background: linear-gradient(135deg, #ffffff, #f5ede7);
-      padding: 28px;
-      width: 340px;
-      border-radius: 16px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.28);
-    }
+  header h1 {
+    position: static;
+    transform: none;
+    font-size: 24px;
+    text-align: center;
+  }
 
-    .modal-content h3 {
-      margin-top: 0;
-      margin-bottom: 18px;
-      font-family: 'Cinzel', serif;
-      font-weight: 500;
-      color: var(--theme);
-      text-align: center;
-      letter-spacing: 1px;
-    }
+  .filters {
+    width: 100%;
+    flex-wrap: wrap;
+  }
 
-    .modal-content input,
-    .modal-content select {
-      width: 100%;
-      margin-bottom: 14px;
-    }
+  .filters select,
+  .filters button {
+    flex: 1;
+    min-width: 45%;
+  }
 
-    .modal-actions {
-      display: flex;
-      gap: 10px;
-    }
+  main {
+    padding: 32px 16px;
+  }
 
-    .modal-actions button {
-      flex: 1;
-    }
-  </style>
+  .magazine-list a {
+    padding: 18px;
+    font-size: 14px;
+  }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  footer .right {
+    justify-content: center;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <img
-    src="https://lh3.googleusercontent.com/d/1a09SrMVQfM_bB2T35LGqmBHmiosrb6Et"
-    alt="The Potter's Hand Logo"
-    loading="lazy"
-    referrerpolicy="no-referrer"
-    onerror="this.style.display='none'"
-  >
+  <img src="https://lh3.googleusercontent.com/d/1a09SrMVQfM_bB2T35LGqmBHmiosrb6Et"
+       referrerpolicy="no-referrer" />
 
   <h1>The Potter's Hand</h1>
 
@@ -236,124 +223,47 @@
 </main>
 
 <footer>
-  <div class="left">© 2026 The Potter's Hand</div>
+  <div>© 2026 The Potter's Hand</div>
   <div class="right">
     <a href="https://youtube.com/YOUR_CHANNEL_LINK" target="_blank">▶</a>
     <button onclick="openLogin()">Login</button>
   </div>
 </footer>
 
-<!-- LOGIN MODAL -->
-<div class="modal" id="loginModal">
-  <div class="modal-content">
-    <h3>Admin Login</h3>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-  </div>
-</div>
-
-<!-- UPLOAD MODAL -->
-<div class="modal" id="uploadModal">
-  <div class="modal-content">
-    <h3>Manage Magazine</h3>
-
-    <select id="uploadMonth">
-      <option>JAN</option><option>FEB</option><option>MAR</option><option>APR</option>
-      <option>MAY</option><option>JUN</option><option>JUL</option><option>AUG</option>
-      <option>SEP</option><option>OCT</option><option>NOV</option><option>DEC</option>
-    </select>
-
-    <select id="uploadYear">
-      <option>2026</option>
-    </select>
-
-    <input type="text" id="pdfLink" placeholder="Google Drive PDF Link">
-
-    <div class="modal-actions">
-      <button onclick="uploadMagazine()">Upload</button>
-      <button class="secondary" onclick="deleteMagazine()">Delete</button>
-    </div>
-  </div>
-</div>
-
 <script>
-  const ADMIN_USER = "admin";
-  const ADMIN_PASS = "P@55w0rd";
-  const listEl = document.getElementById("magazineList");
+const ADMIN_USER = "admin";
+const ADMIN_PASS = "P@55w0rd";
+const listEl = document.getElementById("magazineList");
 
-  function openLogin() {
-    loginModal.style.display = "flex";
-  }
+function getData() {
+  return JSON.parse(localStorage.getItem("magazines") || "[]");
+}
 
-  function login() {
-    if (username.value === ADMIN_USER && password.value === ADMIN_PASS) {
-      loginModal.style.display = "none";
-      uploadModal.style.display = "flex";
-    } else {
-      alert("Invalid credentials");
-    }
-  }
+function renderMagazines(data) {
+  listEl.innerHTML = "";
+  data.forEach(item => {
+    const a = document.createElement("a");
+    a.href = item.link;
+    a.target = "_blank";
+    a.textContent = `${item.month}-${item.year}`;
+    listEl.appendChild(a);
+  });
+}
 
-  function getData() {
-    return JSON.parse(localStorage.getItem("magazines") || "[]");
-  }
+function searchMagazine() {
+  const m = monthFilter.value;
+  const y = yearFilter.value;
+  if (!m || !y) return alert("Select month and year");
+  renderMagazines(getData().filter(i => i.month === m && i.year === y));
+}
 
-  function setData(data) {
-    localStorage.setItem("magazines", JSON.stringify(data));
-  }
-
-  function uploadMagazine() {
-    const month = uploadMonth.value;
-    const year = uploadYear.value;
-    const link = pdfLink.value.trim();
-    if (!link) return alert("Paste PDF link");
-
-    const data = getData().filter(m => !(m.month === month && m.year === year));
-    data.push({ month, year, link });
-    setData(data);
-
-    uploadModal.style.display = "none";
-    renderMagazines(data);
-  }
-
-  function deleteMagazine() {
-    const month = uploadMonth.value;
-    const year = uploadYear.value;
-
-    const data = getData().filter(m => !(m.month === month && m.year === year));
-    setData(data);
-
-    uploadModal.style.display = "none";
-    renderMagazines(data);
-  }
-
-  function renderMagazines(data) {
-    listEl.innerHTML = "";
-    data.forEach(item => {
-      const a = document.createElement("a");
-      a.href = item.link;
-      a.target = "_blank";
-      a.textContent = `${item.month}-${item.year}`;
-      listEl.appendChild(a);
-    });
-  }
-
-  function searchMagazine() {
-    const m = monthFilter.value;
-    const y = yearFilter.value;
-    if (!m || !y) return alert("Select month and year");
-
-    renderMagazines(getData().filter(item => item.month === m && item.year === y));
-  }
-
-  function clearSearch() {
-    monthFilter.value = "";
-    yearFilter.value = "";
-    renderMagazines(getData());
-  }
-
+function clearSearch() {
+  monthFilter.value = "";
+  yearFilter.value = "";
   renderMagazines(getData());
+}
+
+renderMagazines(getData());
 </script>
 
 </body>
