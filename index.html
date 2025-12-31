@@ -5,13 +5,14 @@
 <title>The Potter's Hand</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --theme:#772f0c;
   --bg:linear-gradient(135deg,#f7efe9,#efe2d7);
-  --card:rgba(255,255,255,.92);
+  --card:rgba(255,255,255,.95);
 }
 
 *{box-sizing:border-box}
@@ -47,6 +48,8 @@ header h1{
   letter-spacing:2.5px;
   color:var(--theme);
 }
+
+/* FILTERS */
 .filters{display:flex;gap:8px}
 select,button{
   padding:8px 12px;
@@ -70,12 +73,12 @@ main{
   padding:48px 20px;
 }
 .language-section{
-  max-width:700px;
+  max-width:720px;
   margin:0 auto 40px;
 }
 .language-title{
   font-weight:600;
-  margin-bottom:12px;
+  margin-bottom:14px;
   color:var(--theme);
   letter-spacing:1px;
 }
@@ -91,6 +94,17 @@ main{
   color:var(--theme);
   text-decoration:none;
   box-shadow:0 10px 28px rgba(0,0,0,.08);
+  transition:.2s ease;
+}
+.magazine-list a:hover{
+  transform:translateY(-2px);
+}
+
+/* STATES */
+.status{
+  text-align:center;
+  opacity:.75;
+  font-size:14px;
 }
 
 /* FOOTER */
@@ -138,15 +152,19 @@ footer{
 </header>
 
 <main>
+
   <div class="language-section">
     <div class="language-title">ENGLISH</div>
     <div class="magazine-list" id="englishList"></div>
+    <div class="status" id="englishStatus"></div>
   </div>
 
   <div class="language-section">
     <div class="language-title">TAMIL</div>
     <div class="magazine-list" id="tamilList"></div>
+    <div class="status" id="tamilStatus"></div>
   </div>
+
 </main>
 
 <footer>
@@ -154,46 +172,65 @@ footer{
 </footer>
 
 <script>
-let magazines = [];
+let magazines=[];
 
-const englishList = document.getElementById("englishList");
-const tamilList = document.getElementById("tamilList");
+const englishList=document.getElementById("englishList");
+const tamilList=document.getElementById("tamilList");
+const englishStatus=document.getElementById("englishStatus");
+const tamilStatus=document.getElementById("tamilStatus");
 
-fetch("magazines.json")
-  .then(res => res.json())
-  .then(data => {
-    magazines = data;
+fetch("magazines.json",{cache:"no-store"})
+  .then(res=>{
+    if(!res.ok) throw new Error("Data not found");
+    return res.json();
+  })
+  .then(data=>{
+    magazines=data;
     render(magazines);
+  })
+  .catch(()=>{
+    englishStatus.textContent="Unable to load magazines.";
+    tamilStatus.textContent="Unable to load magazines.";
   });
 
 function render(data){
   englishList.innerHTML="";
   tamilList.innerHTML="";
+  englishStatus.textContent="";
+  tamilStatus.textContent="";
+
+  let en=false, ta=false;
+
   data.forEach(i=>{
     if(i.english){
+      en=true;
       const a=document.createElement("a");
       a.href=i.english;
-      a.target="_blank";
       a.textContent=`${i.month}-${i.year}`;
+      a.setAttribute("download","");
       englishList.appendChild(a);
     }
     if(i.tamil){
+      ta=true;
       const a=document.createElement("a");
       a.href=i.tamil;
-      a.target="_blank";
       a.textContent=`${i.month}-${i.year}`;
+      a.setAttribute("download","");
       tamilList.appendChild(a);
     }
   });
+
+  if(!en) englishStatus.textContent="No English magazines available.";
+  if(!ta) tamilStatus.textContent="No Tamil magazines available.";
 }
 
 function searchMagazine(){
-  if(!monthFilter.value || !yearFilter.value){
+  if(!monthFilter.value||!yearFilter.value){
     alert("Select month and year");
     return;
   }
   render(magazines.filter(
-    i => i.month===monthFilter.value && i.year===yearFilter.value
+    i=>i.month===monthFilter.value && i.year===yearFilter.value
   ));
 }
 
