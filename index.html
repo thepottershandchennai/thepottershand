@@ -1,228 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title>The Potter's Hand</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --theme: #772f0c;
-  --theme-light: #b66a3c;
-  --bg-gradient: linear-gradient(135deg, #f7efe9, #efe2d7);
-  --card-bg: rgba(255,255,255,0.92);
+  --theme:#772f0c;
+  --theme-light:#b66a3c;
+  --bg:linear-gradient(135deg,#f7efe9,#efe2d7);
+  --card:rgba(255,255,255,.92);
 }
 
-* { box-sizing: border-box; }
+*{box-sizing:border-box}
 
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: var(--bg-gradient);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 
-/* ================= HEADER ================= */
-header {
-  background: linear-gradient(90deg, #ffffff, #f4ece6);
-  border-bottom: 1px solid #e5d6cb;
+/* HEADER */
+header{
+  background:linear-gradient(90deg,#fff,#f4ece6);
+  border-bottom:1px solid #e5d6cb;
+}
+.header-inner{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:22px 24px;
+}
+header img{height:70px;border-radius:8px}
+header h1{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:'Cinzel',serif;
+  font-size:30px;
+  letter-spacing:2.5px;
+  color:var(--theme);
+}
+.filters{display:flex;gap:8px}
+select,button{
+  padding:8px 12px;
+  border-radius:6px;
+  border:1px solid #c9b4a6;
+}
+button{
+  background:var(--theme);
+  color:#fff;
+  border:none;
+  cursor:pointer;
+}
+button.secondary{
+  background:#e6d5c8;
+  color:var(--theme);
 }
 
-.header-inner {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 22px 24px;
+/* BODY */
+main{
+  flex:1;
+  padding:48px 20px;
+}
+.language-section{
+  max-width:700px;
+  margin:0 auto 40px;
+}
+.language-title{
+  font-weight:600;
+  margin-bottom:12px;
+  color:var(--theme);
+  letter-spacing:1px;
+}
+.magazine-list{
+  display:grid;
+  gap:14px;
+}
+.magazine-list a{
+  padding:18px;
+  text-align:center;
+  background:var(--card);
+  border-radius:12px;
+  color:var(--theme);
+  text-decoration:none;
+  box-shadow:0 10px 28px rgba(0,0,0,.08);
 }
 
-header img {
-  height: 70px;
-  border-radius: 8px;
-  background: #f0e6df;
+/* FOOTER */
+footer{
+  background:linear-gradient(90deg,#f4ece6,#fff);
+  border-top:1px solid #e5d6cb;
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
 }
 
-header h1 {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'Cinzel', serif;
-  font-weight: 400;
-  font-size: 30px;
-  letter-spacing: 2.5px;
-  color: var(--theme);
-  white-space: nowrap;
-  pointer-events: none;
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  justify-content:center;
+  align-items:center;
+  z-index:20;
+}
+.modal-content{
+  background:#fff;
+  padding:24px;
+  width:90%;
+  max-width:380px;
+  border-radius:16px;
+}
+.modal-content h3{
+  margin-top:0;
+  font-family:'Cinzel',serif;
+  color:var(--theme);
+  text-align:center;
+}
+.modal-content input,
+.modal-content select{
+  width:100%;
+  margin-bottom:12px;
 }
 
-.filters {
-  display: flex;
-  gap: 8px;
-}
-
-select, button {
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: 1px solid #c9b4a6;
-  background: #fff;
-}
-
-button {
-  background: var(--theme);
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-button.secondary {
-  background: #e6d5c8;
-  color: var(--theme);
-}
-
-/* ================= BODY ================= */
-main {
-  flex: 1;
-  padding: 48px 20px;
-}
-
-.magazine-list {
-  max-width: 700px;
-  margin: auto;
-  display: grid;
-  gap: 16px;
-}
-
-.magazine-list a {
-  padding: 20px;
-  text-align: center;
-  font-weight: 500;
-  letter-spacing: 1.4px;
-  text-decoration: none;
-  color: var(--theme);
-  background: var(--card-bg);
-  border-radius: 12px;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-  transition: all 0.3s ease;
-}
-
-.magazine-list a:hover {
-  background: linear-gradient(135deg, var(--theme), var(--theme-light));
-  color: #fff;
-  transform: translateY(-3px);
-}
-
-/* ================= FOOTER ================= */
-footer {
-  background: linear-gradient(90deg, #f4ece6, #fff);
-  border-top: 1px solid #e5d6cb;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-footer .right {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-/* ================= MODALS ================= */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  justify-content: center;
-  align-items: center;
-  z-index: 20;
-}
-
-.modal-content {
-  background: #fff;
-  padding: 24px;
-  width: 90%;
-  max-width: 360px;
-  border-radius: 16px;
-}
-
-/* ================= MOBILE ================= */
-@media (max-width: 768px) {
-
-  .header-inner {
-    flex-direction: column;
-    gap: 14px;
-    padding-bottom: 26px;
-  }
-
-  header img {
-    height: 60px;
-  }
-
-  header h1 {
-    position: static;
-    transform: none;
-    font-size: 24px;
-    text-align: center;
-    margin: 6px 0;
-  }
-
-  .filters {
-    width: 100%;
-    flex-wrap: wrap;
-  }
-
-  .filters select,
-  .filters button {
-    flex: 1;
-    min-width: 45%;
-  }
-
-  main {
-    padding: 32px 16px;
-  }
-
-  footer {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  footer .right {
-    justify-content: center;
-  }
+/* MOBILE */
+@media(max-width:768px){
+  .header-inner{flex-direction:column;gap:14px}
+  header h1{position:static;transform:none;font-size:24px}
+  .filters{width:100%;flex-wrap:wrap}
+  .filters select,.filters button{flex:1;min-width:45%}
+  footer{flex-direction:column;text-align:center}
 }
 </style>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MRJ42CV7');</script>
-<!-- End Google Tag Manager -->
 </head>
 
 <body>
 
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MRJ42CV7"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
 <header>
   <div class="header-inner">
-
-    <img
-      src="https://lh3.googleusercontent.com/d/1a09SrMVQfM_bB2T35LGqmBHmiosrb6Et"
-      alt="The Potter's Hand Logo"
-      referrerpolicy="no-referrer"
-    >
-
+    <img src="https://lh3.googleusercontent.com/d/1a09SrMVQfM_bB2T35LGqmBHmiosrb6Et" referrerpolicy="no-referrer">
     <h1>The Potter's Hand</h1>
 
     <div class="filters">
@@ -241,59 +169,127 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button onclick="searchMagazine()">Search</button>
       <button class="secondary" onclick="clearSearch()">Clear</button>
     </div>
-
   </div>
 </header>
 
 <main>
-  <div class="magazine-list" id="magazineList"></div>
+  <div class="language-section">
+    <div class="language-title">ENGLISH</div>
+    <div class="magazine-list" id="englishList"></div>
+  </div>
+
+  <div class="language-section">
+    <div class="language-title">TAMIL</div>
+    <div class="magazine-list" id="tamilList"></div>
+  </div>
 </main>
 
 <footer>
   <div>© 2026 The Potter's Hand</div>
-  <div class="right">
-    <a href="https://youtube.com/@thepottershandchennai?si=yQj_Z6m0Xpo1PYmz" target="_blank">▶</a>
-    <button onclick="openLogin()">Login</button>
-  </div>
+  <button onclick="openLogin()">Login</button>
 </footer>
 
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+  <div class="modal-content">
+    <h3>Admin Login</h3>
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div class="modal" id="adminModal">
+  <div class="modal-content">
+    <h3>Manage Magazine</h3>
+
+    <select id="adminMonth">
+      <option>JAN</option><option>FEB</option><option>MAR</option><option>APR</option>
+      <option>MAY</option><option>JUN</option><option>JUL</option><option>AUG</option>
+      <option>SEP</option><option>OCT</option><option>NOV</option><option>DEC</option>
+    </select>
+
+    <select id="adminYear">
+      <option>2026</option>
+    </select>
+
+    <input id="englishLink" placeholder="English PDF link">
+    <input id="tamilLink" placeholder="Tamil PDF link">
+
+    <button onclick="saveMagazine()">Upload / Update</button>
+    <button class="secondary" onclick="deleteMagazine()">Delete</button>
+  </div>
+</div>
+
 <script>
-const ADMIN_USER = "admin";
-const ADMIN_PASS = "P@55w0rd";
-const listEl = document.getElementById("magazineList");
+const ADMIN_USER="admin";
+const ADMIN_PASS="P@55w0rd";
 
-function getData() {
-  return JSON.parse(localStorage.getItem("magazines") || "[]");
+const englishList=document.getElementById("englishList");
+const tamilList=document.getElementById("tamilList");
+
+function getData(){
+  return JSON.parse(localStorage.getItem("magazines")||"[]");
 }
-
-function renderMagazines(data) {
-  listEl.innerHTML = "";
-  data.forEach(item => {
-    const a = document.createElement("a");
-    a.href = item.link;
-    a.target = "_blank";
-    a.textContent = `${item.month}-${item.year}`;
-    listEl.appendChild(a);
+function setData(d){
+  localStorage.setItem("magazines",JSON.stringify(d));
+}
+function render(data){
+  englishList.innerHTML="";
+  tamilList.innerHTML="";
+  data.forEach(i=>{
+    if(i.english){
+      const a=document.createElement("a");
+      a.href=i.english;a.target="_blank";
+      a.textContent=`${i.month}-${i.year}`;
+      englishList.appendChild(a);
+    }
+    if(i.tamil){
+      const a=document.createElement("a");
+      a.href=i.tamil;a.target="_blank";
+      a.textContent=`${i.month}-${i.year}`;
+      tamilList.appendChild(a);
+    }
   });
 }
-
-function searchMagazine() {
-  const m = monthFilter.value;
-  const y = yearFilter.value;
-  if (!m || !y) return alert("Select month and year");
-  renderMagazines(getData().filter(i => i.month === m && i.year === y));
+function searchMagazine(){
+  if(!monthFilter.value||!yearFilter.value)return alert("Select month & year");
+  render(getData().filter(i=>i.month===monthFilter.value&&i.year===yearFilter.value));
 }
-
-function clearSearch() {
-  monthFilter.value = "";
-  yearFilter.value = "";
-  renderMagazines(getData());
+function clearSearch(){
+  monthFilter.value="";yearFilter.value="";
+  render(getData());
 }
-
-renderMagazines(getData());
+function openLogin(){
+  loginModal.style.display="flex";
+}
+function login(){
+  if(username.value===ADMIN_USER&&password.value===ADMIN_PASS){
+    loginModal.style.display="none";
+    adminModal.style.display="flex";
+  } else alert("Invalid login");
+}
+function saveMagazine(){
+  const m=adminMonth.value,y=adminYear.value;
+  let data=getData().filter(i=>!(i.month===m&&i.year===y));
+  data.push({
+    month:m,year:y,
+    english:englishLink.value.trim(),
+    tamil:tamilLink.value.trim()
+  });
+  setData(data);
+  adminModal.style.display="none";
+  render(data);
+}
+function deleteMagazine(){
+  const m=adminMonth.value,y=adminYear.value;
+  setData(getData().filter(i=>!(i.month===m&&i.year===y)));
+  adminModal.style.display="none";
+  render(getData());
+}
+render(getData());
 </script>
 
 </body>
 </html>
-
-
